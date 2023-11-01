@@ -5,31 +5,19 @@
  * @return {number[]}
  */
 var findClosestElements = function(arr, k, x) {
-    let map = new Map()
-    let answer = []
+    let left = 0
+    let right = arr.length - k
 
-    for (let i = 0; i < arr.length; i ++) {
-        let distance = Math.abs(arr[i] - x)
-        map.set(i, distance)
-    }
+    while (left < right) {
+        let mid = Math.floor((left + right) / 2)
 
-    let hashmap = Object.fromEntries(map)
-    let entries = Object.entries(hashmap)
-
-    
-
-    let result = entries.sort((a, b) => {
-        if (a[1] !== b[1]) {
-            return a[1] - b[1]
+        if (x -arr[mid] > arr[mid + k] - x) {
+            left = mid + 1
+        } else {
+            right = mid
         }
-        return hashmap[a[0]] - hashmap[b[0]]
-    })
-
-
-    for (let i = 0; i < k; i ++) {
-        answer.push(arr[Number(result[i][0])])// the actual thing goes here
     }
-    return answer.sort((a, b) => a - b)
+    return arr.slice(left, left + k)
 };
 
 // [0,1,1,1,2,3,6,7,8,9]
