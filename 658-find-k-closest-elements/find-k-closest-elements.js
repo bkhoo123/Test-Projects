@@ -6,46 +6,29 @@
  */
 var findClosestElements = function(arr, k, x) {
     let left = 0
-    let right = arr.length - k
+    let right = arr.length - k // 1
 
     while (left < right) {
-        let mid = Math.floor((left + right) / 2)
+        let mid = Math.floor((left + right) / 2) // 0
+        console.log("mid", mid)
 
-        if (x -arr[mid] > arr[mid + k] - x) {
-            left = mid + 1
+        if (x - arr[mid] > arr[mid + k] - x) { // if 2 > 2
+            left = mid + 1 // 1
+            console.log("left", left)
         } else {
-            right = mid
+            right = mid // 0 
         }
     }
+
+
     return arr.slice(left, left + k)
 };
 
-// [0,1,1,1,2,3,6,7,8,9]
-// k = 9
 
-// 1 - 3 = 2 distance from x measurement
-// 2 - 3 = 1 distance from x measurement
-// sliding window of size 4 
+// iteration #1 : 
+// left = 0
+// right = 0
+// returns
 
-// 1 + 1 = 2
-// 2 + 1 = 3
-// 3 + 1 = 4
-// 4 + 1 = 5  
+// arr.slice(0, 4)
 
-// sliding window minimum 
-// min heap 
-
-// in the event of a tie I have to do some kind of nested sort logic possibly. 
-// sort keys and values by lowest to highest by the value followed by the keys in the event of a tie and then sort ascending again
-
-
-//[
-//   [ '3', 1 ], 1
-//   [ '2', 2 ], 2
-//   [ '6', 2 ], 3
-//   [ '1', 3 ], 4 
-//   [ '7', 3 ], 5
-//   [ '0', 4 ], 6
-//   [ '8', 4 ], 7 
-//   [ '9', 5 ]  8
-// ]
