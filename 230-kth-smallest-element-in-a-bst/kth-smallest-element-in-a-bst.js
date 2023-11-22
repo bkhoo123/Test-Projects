@@ -12,19 +12,24 @@
  * @return {number}
  */
 var kthSmallest = function(root, k) {
-    if (!root) return null
-    
-    let stack = [root]
-    let min = Infinity
 
-    while (stack.length) {
-        let node = stack.pop()
-        min = Math.min(min, node.val)
+    let count = 0;
 
-        if (node.left) stack.push(node.left)
-        if (node.right) stack.push(node.right)
+    function dfs(node) {
+        if(!node) return
+
+        let left = dfs(node.left);
+        count++
+        if(count===k) return node.val
+        
+
+        let right = dfs(node.right);
+        if(left!==undefined) return left
+        else if (right!==undefined) return right
     }
-    return k + min - 1
+
+    return dfs(root)
+    
 };
 
 // inside recursive stack tree I will know the values
