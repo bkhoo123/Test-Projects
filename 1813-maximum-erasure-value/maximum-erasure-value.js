@@ -3,26 +3,23 @@
  * @return {number}
  */
 var maximumUniqueSubarray = function(nums) {
-    let left = 0;
-    let maxSum = 0;
-    let currentSum = 0;
-    let uniqueElements = new Set();
+    let left = 0
+    let max = 0
+    let sum = 0
+    let set = new Set()
 
     for (let right = 0; right < nums.length; right++) {
-        while (uniqueElements.has(nums[right])) {
-            // Remove elements from the left of the window
-            currentSum -= nums[left];
-            uniqueElements.delete(nums[left]);
-            left++;
+        while (set.has(nums[right])) {
+            sum -= nums[left]
+            set.delete(nums[left])
+            left++
         }
 
-        // Add the current element to the set and sum
-        uniqueElements.add(nums[right]);
-        currentSum += nums[right];
+        set.add(nums[right])
+        sum += nums[right]
 
-        // Update the maximum sum
-        maxSum = Math.max(maxSum, currentSum);
+        max = Math.max(max, sum);
     }
 
-    return maxSum;
+    return max;
 };
