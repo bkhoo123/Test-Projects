@@ -28,7 +28,3 @@ var maxIncreaseKeepingSkyline = function(grid) {
     }
     return sum
 };
-
-// Helper function for max column 
-
-// Minimum of the max of its row and column
